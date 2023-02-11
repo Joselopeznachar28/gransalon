@@ -36,42 +36,52 @@
         </div>
 
         <div class="container">
-            <h2 class="text-center">Ventas</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Hola</th>
-                        <th>Hola</th>
-                        <th>Hola</th>
-                    </tr>
-                </thead>
-                <tbody class="table-success">
-                    <tr>
-                        <td>Hola</td>
-                        <td>Hola</td>
-                        <td>Hola</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2 class="text-center">Tablas de Ventas</h2>
+            <div class="card">
+                <input type="button" value="Lista de Ventas Canceladas" class="card-head btn btn-dark "data-bs-toggle="collapse" href="#collapseVentas" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div class="card-body">
+                    <table class="table table-success table-striped" id="collapseVentas">
+                        <thead>
+                            <tr>
+                                <th>Hola</th>
+                                <th>Hola</th>
+                                <th>Hola</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-success">
+                            <tr>
+                                <td>Hola</td>
+                                <td>Hola</td>
+                                <td>Hola</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div class="container">
-            <h2 class="text-center">Ventas a Creditos</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Hola</th>
-                        <th>Hola</th>
-                        <th>Hola</th>
-                    </tr>
-                </thead>
-                <tbody class="table-danger">
-                    <tr>
-                        <td>Hola</td>
-                        <td>Hola</td>
-                        <td>Hola</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2 class="text-center">Tablas de Ventas</h2>
+            <div class="card">
+                <input type="button" value="Lista de Ventas Por Pagar" class="card-head btn btn-dark "data-bs-toggle="collapse" href="#collapseCreditos" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div class="card-body">
+                    <table class="table table-success table-striped" id="collapseCreditos">
+                        <thead>
+                            <tr>
+                                <th>Hola</th>
+                                <th>Hola</th>
+                                <th>Hola</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-success">
+                            <tr>
+                                <td>Hola</td>
+                                <td>Hola</td>
+                                <td>Hola</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </body>
 </html>

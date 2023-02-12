@@ -20,6 +20,7 @@ Route::get('/', [SalesController::class, 'dashboard'])->name('sales.dashboard');
 
 Route::get('sales/create', [SalesController::class, 'create'])->name('sales.create');
 Route::post('sales/store', [SalesController::class, 'store'])->name('sales.store');
+Route::get('sales/show/{id}', [SalesController::class, 'show'])->name('sales.show');
 Route::get('sales/pdf', [SalesController::class, 'pdfSales'])->name('sales.pdf');
 
 Route::get('concessionaires/create', [ConcessionairesController::class, 'create'])->name('concessionaires.create');

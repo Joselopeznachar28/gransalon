@@ -82,7 +82,8 @@ class SalesController extends Controller
         return redirect()->route('sales.dashboard');
     }
 
-    public function pdfSales(){
+    public function pdfSales()
+    {
 
         $credictSales = Sale::orWhere('sale_type', 'credito')->get();
         $paymentSales = Sale::orWhere('sale_type', 'paga')->get();
@@ -90,5 +91,11 @@ class SalesController extends Controller
         $pdf = PDF::loadView('sales.pdf', compact('credictSales', 'paymentSales'))->setOptions(['defaultFont' => 'sans-serif']);
 
         return $pdf->stream();
+    }
+
+    public function show($id){
+
+        $sale = Sale::find($id);
+        return view('sales.show', compact('sale'));
     }
 }

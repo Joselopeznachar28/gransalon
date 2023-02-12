@@ -40,7 +40,7 @@
             <div class="card">
                 <input type="button" value="Pedidos Cancelados" class="card-head btn btn-dark "data-bs-toggle="collapse" href="#collapseVentas" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="card-body">
-                    <table class="table table-success table-striped" id="collapseVentas">
+                    <table class="table table-success table-striped text-center" id="collapseVentas">
                         <thead>
                             <tr>
                                 <th>Codigo de Venta</th>
@@ -49,6 +49,7 @@
                                 <th>Total a Pagar USD</th>
                                 <th>Total a Pagar VEF</th>
                                 <th>Referencia</th>
+                                <th>Detalles</th>
                             </tr>
                         </thead>
                         <tbody class="table-success">
@@ -60,6 +61,7 @@
                                     <td>{{ number_format(($paymentSale->payment_total),2,',','.')}}</td>
                                     <td>{{ number_format(($paymentSale->payment_vef),2,',','.')}}</td>
                                     <td>{{ $paymentSale->payment_code ? $paymentSale->payment_code : 'Pago en Efectivo' }}</td>
+                                    <td><a href="{{route('sales.show', $paymentSale->id)}}">Detalles</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -71,13 +73,13 @@
             <div class="card">
                 <input type="button" value="Pedidos a Credito" class="card-head btn btn-dark "data-bs-toggle="collapse" href="#collapseCreditos" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="card-body">
-                    <table class="table table-danger table-striped" id="collapseCreditos">
+                    <table class="table table-danger table-striped text-center" id="collapseCreditos">
                         <thead>
                             <tr>
                                 <th>Codigo de Venta</th>
                                 <th>Debe Pagar USD</th>
-                                <th>Cambio a VEF</th>
                                 <th>Nota</th>
+                                <th>Detalles</th>
                             </tr>
                         </thead>
                         <tbody class="table-danger">
@@ -85,8 +87,8 @@
                                 <tr>
                                     <td>{{ $credictSale->code }}</td>
                                     <td>{{ number_format(($credictSale->payment_total),2,',','.')}}</td>
-                                    <td>{{ number_format(($credictSale->payment_vef),2,',','.')}}</td>
                                     <td>{{ $credictSale->note }}</td>
+                                    <td><a href="{{route('sales.show', $credictSale->id)}}">Detalles</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

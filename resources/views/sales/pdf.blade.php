@@ -46,7 +46,7 @@
                 line-height: 35px;
             }
 
-            table{
+            .text-center{
                 text-align: center;
             }
 
@@ -54,24 +54,24 @@
     </head>
     <body>
         <div>
-            <h1>A&BGranSalon - Caja N° Prueba</h1>
+            <h1>A&BGranSalon - Caja N° 2</h1>
             <img src="" alt="">
         </div>
         <!-- pagos -->
         <div class="page-break">
             <h2>Pedidos Pagos</h2>
             <table>
-                <thead>
+                <thead class="text-center">
                     <tr>
                         <th>Codigo de Venta</th>
                         <th>Forma de Pago</th>
                         <th>Tipo de Pago</th>
-                        <th>Total a Pagar USD</th>
-                        <th>Total a Pagar VEF</th>
+                        <th>Total USD</th>
+                        <th>Total VEF</th>
                         <th>Referencia</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach ($paymentSales as $paymentSale)
                         <tr>
                             <td>{{ $paymentSale->code }}</td>
@@ -94,14 +94,14 @@
         <div>
             <h2>Pedidos A Credito</h2>
             <table >
-                <thead>
+                <thead class = "text-center">
                     <tr>
-                        <th>Codigo de Venta</th>
+                        <th>#</th>
                         <th>Pagar USD</th>
                         <th>Nota</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class = "text-center">
                     @foreach ($credictSales as $credictSale)
                         <tr>
                             <td>{{ $credictSale->code }}</td>
@@ -113,7 +113,7 @@
             </table>
             <br><hr>
             <div style="text-align: right">
-                <span>Total Ingresos USD: <b>{{ number_format($credictSales->sum('payment_total'),2,',','.') }}</b></span><br>
+                <span>Total USD: <b>{{ number_format($credictSales->sum('payment_total'),2,',','.') }}</b></span><br>
             </div>
         </div>
     </body>

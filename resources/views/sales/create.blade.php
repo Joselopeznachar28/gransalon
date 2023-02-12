@@ -26,27 +26,27 @@
                         <select class="form-select" id="floatingProduct" name="products[0][name]">
                           <option selected disabled>-- Seleccionar --</option>
                           <option disabled class="bg-black text-bold text-white">Bebidas</option>
-                          <option value="santa_teresa">Santa Teresa Linaje</option>
-                          <option value="old_par">Old Par 12</option>
-                          <option value="buchanans_12">Buchanan's 12</option>
-                          <option value="buchanans_18">Buchanan's 18</option>
-                          <option value="diplomatico_re">Diplomatico R.E.</option>
-                          <option value="grey_goose">Grey Goose</option>
-                          <option value="espumante">Espumante</option>
-                          <option value="vino_blanco">Vino Blanco</option>
-                          <option value="red_bull">Red Bull</option>
-                          <option value="agua_gasificada">Agua Gasificada</option>
-                          <option value="refresco_lata">Refresco de Lata</option>
-                          <option value="soda">Soda</option>
-                          <option value="aguakina">AguaKina</option>
-                          <option value="agua">Agua</option>
+                          <option value="Santa Teresa Linaje">Santa Teresa Linaje</option>
+                          <option value="Old Par 12"></option>
+                          <option value="Buchanan's 12">Buchanan's 12</option>
+                          <option value="Buchanan's 18">Buchanan's 18</option>
+                          <option value="Diplomatico R.E.">Diplomatico R.E.</option>
+                          <option value="Grey Goose">Grey Goose</option>
+                          <option value="Espumante">Espumante</option>
+                          <option value="Vino Blanco">Vino Blanco</option>
+                          <option value="Red Bull">Red Bull</option>
+                          <option value="Agua Gasificada">Agua Gasificada</option>
+                          <option value="Refresco de Lata">Refresco de Lata</option>
+                          <option value="Soda">Soda</option>
+                          <option value="AguaKina">AguaKina</option>
+                          <option value="Agua">Agua</option>
                           <option disabled class="bg-black text-bold text-white">Alimentos</option>
-                          <option value="sushi">Sushi</option>
-                          <option value="tequeño">Tequeño</option>
-                          <option value="carpaccio_lomito">Carpaccio Lomito</option>
-                          <option value="ceviche">Ceviche</option>
-                          <option value="coctel_camarones">Coctel De Camarones</option>
-                          <option value="pizza">Pizza</option>
+                          <option value="Sushi">Sushi</option>
+                          <option value="Tequeño">Tequeño</option>
+                          <option value="Carpaccio Lomito">Carpaccio Lomito</option>
+                          <option value="Ceviche">Ceviche</option>
+                          <option value="Coctel De Camarones">Coctel De Camarones</option>
+                          <option value="Pizza">Pizza</option>
                         </select>
                         <label for="floatingProduct">Alimentos y Bebidas</label>
                     </div>

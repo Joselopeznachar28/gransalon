@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('sale_type');
             $table->text('note');
             $table->integer('priceDollar');
-            $table->string('payment_type');
-            $table->string('payment_form');
-            $table->string('payment_code');
+            $table->string('payment_type')->nullable();
+            $table->string('payment_form')->nullable();
+            $table->string('payment_code')->nullable();
             $table->integer('payment_total');
+            $table->integer('payment_vef');
             $table->timestamps();
         });
     }

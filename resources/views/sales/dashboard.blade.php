@@ -28,7 +28,7 @@
                   <div>
                     <ul class="list-unstyled">
                         <li><a href="{{ route('sales.create') }}" class="btn btn-outline-success mb-2">Venta</a></li>
-                        <li><a href="#" class="btn btn-outline-info mb-2">Reporte</a></li>
+                        <li><a href="{{ route('sales.pdf') }}" class="btn btn-outline-info mb-2">Reporte</a></li>
                     </ul>
                   </div>
                 </div>
@@ -43,17 +43,25 @@
                     <table class="table table-success table-striped" id="collapseVentas">
                         <thead>
                             <tr>
-                                <th>Hola</th>
-                                <th>Hola</th>
-                                <th>Hola</th>
+                                <th>Codigo de Venta</th>
+                                <th>Forma de Pago</th>
+                                <th>Tipo de Pago</th>
+                                <th>Total a Pagar USD</th>
+                                <th>Total a Pagar VEF</th>
+                                <th>Referencia</th>
                             </tr>
                         </thead>
                         <tbody class="table-success">
-                            <tr>
-                                <td>Hola</td>
-                                <td>Hola</td>
-                                <td>Hola</td>
-                            </tr>
+                            @foreach ($paymentSales as $paymentSale)
+                                <tr>
+                                    <td>{{ $paymentSale->code }}</td>
+                                    <td>{{ $paymentSale->payment_form }}</td>
+                                    <td>{{ $paymentSale->payment_type }}</td>
+                                    <td>{{ number_format(($paymentSale->payment_total),2,',','.')}}</td>
+                                    <td>{{ number_format(($paymentSale->payment_vef),2,',','.')}}</td>
+                                    <td>{{ $paymentSale->payment_code ? $paymentSale->payment_code : 'Pago en Efectivo' }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -63,20 +71,24 @@
             <div class="card">
                 <input type="button" value="Pedidos a Credito" class="card-head btn btn-dark "data-bs-toggle="collapse" href="#collapseCreditos" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="card-body">
-                    <table class="table table-success table-striped" id="collapseCreditos">
+                    <table class="table table-danger table-striped" id="collapseCreditos">
                         <thead>
                             <tr>
-                                <th>Hola</th>
-                                <th>Hola</th>
-                                <th>Hola</th>
+                                <th>Codigo de Venta</th>
+                                <th>Debe Pagar USD</th>
+                                <th>Cambio a VEF</th>
+                                <th>Nota</th>
                             </tr>
                         </thead>
-                        <tbody class="table-success">
-                            <tr>
-                                <td>Hola</td>
-                                <td>Hola</td>
-                                <td>Hola</td>
-                            </tr>
+                        <tbody class="table-danger">
+                            @foreach ($credictSales as $credictSale)
+                                <tr>
+                                    <td>{{ $credictSale->code }}</td>
+                                    <td>{{ number_format(($credictSale->payment_total),2,',','.')}}</td>
+                                    <td>{{ number_format(($credictSale->payment_vef),2,',','.')}}</td>
+                                    <td>{{ $credictSale->note }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

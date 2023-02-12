@@ -13,6 +13,7 @@ class Product extends Model
         'name',
         'price',
         'quantity',
+        'totalToProduct',
         'concessionaire_id',
         'sale_id'
     ];
@@ -23,5 +24,15 @@ class Product extends Model
 
     public function sale(){
         return $this->belongsTo(Sale::class);
+    }
+
+    public function setTotalToProductAttribute($value)
+    {
+        $this->attributes['totalToProduct'] = $value * 100;
+    }
+    
+    public function getTotalToProductAttribute($value)
+    {
+        return $value / 100;
     }
 }

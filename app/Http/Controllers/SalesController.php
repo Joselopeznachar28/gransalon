@@ -6,20 +6,29 @@ use App\Models\Concessionaire;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use PDF;
 
 class SalesController extends Controller
 {
+    public function dashboard()
+    {
+        $credictSales = Sale::orWhere('sale_type', 'credito')->get();
+        $paymentSales = Sale::orWhere('sale_type', 'paga')->get();
 
-    public function create(){
+        return view('sales.dashboard', compact('credictSales', 'paymentSales'));
+    }
+
+    public function create()
+    {
         $concessionaires = Concessionaire::all();
         $products = Product::all();
         return view('sales.create',compact('products','concessionaires'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $sale = Sale::create([
-            'code' => strtoupper('VENTA-' . (string) Str::random(5)),
+            'code' => 0,
             'sale_type'     => $request->sale_type,
             'note'          => $request->note,
             'payment_type'  => $request->payment_type,
@@ -27,8 +36,11 @@ class SalesController extends Controller
             'payment_code'  => $request->payment_code,
             'priceDollar'   => $request->priceDollar,
             'payment_total' => 0,
+            'payment_vef'   => 0,
         ]);
         
+        $payment_vef = 0; 
+
         $hasProducts = $request->has('products');
         
         $products = $request->products;
@@ -36,12 +48,16 @@ class SalesController extends Controller
         if ($hasProducts){
             
             foreach ($products as $product) {
-                
+
+                $totalToProduct = $product['price'] * $product['quantity'];
+
                 $newProduct = $sale->products()->saveMany([
+
                     new Product([
                         'name'  => $product['name'],
                         'price' => $product['price'],
                         'quantity' => $product['quantity'],
+                        'totalToProduct' => $totalToProduct,
                         'concessionaire_id' => $product['concessionaire_id'],
                         'sale_id' => $sale->id,
                     ]),
@@ -49,15 +65,30 @@ class SalesController extends Controller
             }
         }
 
-        $payment_total = 0;
+        $payment_total = $sale->products->sum('totalToProduct');
+
+        if ($sale->payment_type == 'vef') {
+            foreach ($newProduct as $product) {
+                $payment_vef = $payment_total * $sale->priceDollar;
+            }
+        }
+
         $sale->update([
+            'code' => strtoupper('VENTA-0' . $sale->id),
             'payment_total' => $payment_total,
+            'payment_vef'   => $payment_vef,
         ]);
 
-        // $saleProducts = $sale->products()->saveMany([
-        //     new Product([
-        //         ''
-        //     ])
-        // ])
+        return redirect()->route('sales.dashboard');
+    }
+
+    public function pdfSales(){
+
+        $credictSales = Sale::orWhere('sale_type', 'credito')->get();
+        $paymentSales = Sale::orWhere('sale_type', 'paga')->get();
+
+        $pdf = PDF::loadView('sales.pdf', compact('credictSales', 'paymentSales'))->setOptions(['defaultFont' => 'sans-serif']);
+
+        return $pdf->stream();
     }
 }

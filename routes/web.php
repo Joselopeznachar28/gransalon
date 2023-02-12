@@ -16,12 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SalesController::class, 'dashboard'])->name('sales.dashboard');
 
 Route::get('sales/create', [SalesController::class, 'create'])->name('sales.create');
 Route::post('sales/store', [SalesController::class, 'store'])->name('sales.store');
+Route::get('sales/pdf', [SalesController::class, 'pdfSales'])->name('sales.pdf');
 
 Route::get('concessionaires/create', [ConcessionairesController::class, 'create'])->name('concessionaires.create');
 Route::post('concessionaires/store', [ConcessionairesController::class, 'store'])->name('concessionaires.store');

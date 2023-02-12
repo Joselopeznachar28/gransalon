@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('price');
+            $table->integer('totalToProduct');
             $table->integer('quantity');
 
             $table->foreignId('concessionaire_id')->constrained('concessionaires')->onDelete('cascade')->onUpdate('cascade');

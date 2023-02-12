@@ -95,6 +95,7 @@
             <div class="row" id="otherProducts"></div><br><hr>
 
             <div class="row">
+                <h2 class="text-center">Informacion del Pago</h2><hr>
                 <div class="col-sm-2">
                     <div class="form-floating">
                         <select class="form-select" id="floatingFormPayment" name="sale_type">
@@ -131,7 +132,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="form-floating">
-                        <input type="number" class="form-control" id="floatingPriceDollar" placeholder="Ingrese Tasa BCV Actual" name="priceDollar" min="0.1" step="0.1">
+                        <input type="number" class="form-control" id="floatingPriceDollar" disabled readonly  value=24.20 name="priceDollar" min="0.1" step="0.1">
                         <label for="floatingPriceDollar">Tasa BCV</label>
                     </div>
                 </div>

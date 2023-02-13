@@ -27,7 +27,7 @@
                           <option selected disabled>-- Seleccionar --</option>
                           <option disabled class="bg-black text-bold text-white">Bebidas</option>
                           <option value="Santa Teresa Linaje">Santa Teresa Linaje</option>
-                          <option value="Old Par 12"></option>
+                          <option value="Old Par 12">Old Par 12</option>
                           <option value="Buchanan's 12">Buchanan's 12</option>
                           <option value="Buchanan's 18">Buchanan's 18</option>
                           <option value="Diplomatico R.E.">Diplomatico R.E.</option>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="form-floating">
-                        <input type="number" class="form-control" id="floatingPriceDollar" disabled readonly  value=24.20 name="priceDollar" min="0.1" step="0.1">
+                        <input type="number" class="form-control" id="floatingPriceDollar" disabled readonly  value='24.20' name="priceDollar" min="0.1" step="0.1">
                         <label for="floatingPriceDollar">Tasa BCV</label>
                     </div>
                 </div>

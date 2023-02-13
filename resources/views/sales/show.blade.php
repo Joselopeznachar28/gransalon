@@ -65,7 +65,7 @@
             </table>
             <div style="text-align: right">
                 <span>Total Venta USD: <b>{{ number_format($sale->products->sum('totalToProduct'),2,',','.') }}</b></span><br>
-                <span>Venta en VEF: <b>{{ number_format($sale->products->sum('payment_vef'),2,',','.') }}</b></span>
+                <span>Venta en VEF: <b>{{ number_format($sale->payment_vef,2,',','.') }}</b></span>
             </div>
         </div>
     </body>

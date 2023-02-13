@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Concessionaire;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Http\Requests\SaleRequest;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -25,8 +26,9 @@ class SalesController extends Controller
         return view('sales.create',compact('products','concessionaires'));
     }
 
-    public function store(Request $request)
+    public function store(SaleRequest $request)
     {
+
         $sale = Sale::create([
             'code' => 0,
             'sale_type'     => $request->sale_type,
@@ -34,13 +36,12 @@ class SalesController extends Controller
             'payment_type'  => $request->payment_type,
             'payment_form'  => $request->payment_form,
             'payment_code'  => $request->payment_code,
-            'priceDollar'   => $request->priceDollar,
+            'priceDollar'   => 24,20,
             'payment_total' => 0,
             'payment_vef'   => 0,
         ]);
-        
-        $payment_vef = 0; 
 
+        $payment_vef = 0;
         $hasProducts = $request->has('products');
         
         $products = $request->products;
@@ -68,9 +69,7 @@ class SalesController extends Controller
         $payment_total = $sale->products->sum('totalToProduct');
 
         if ($sale->payment_type == 'vef') {
-            foreach ($newProduct as $product) {
-                $payment_vef = $payment_total * $sale->priceDollar;
-            }
+            $payment_vef = $payment_total * $sale->priceDollar;
         }
 
         $sale->update([
@@ -78,6 +77,7 @@ class SalesController extends Controller
             'payment_total' => $payment_total,
             'payment_vef'   => $payment_vef,
         ]);
+        
 
         return redirect()->route('sales.dashboard');
     }

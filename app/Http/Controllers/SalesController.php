@@ -6,6 +6,7 @@ use App\Models\Concessionaire;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Http\Requests\SaleRequest;
+use App\Models\ProductSale;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -26,9 +27,9 @@ class SalesController extends Controller
         return view('sales.create',compact('products','concessionaires'));
     }
 
-    public function store(SaleRequest $request)
+    public function store(Request $request)
     {
-
+        
         $sale = Sale::create([
             'code' => 0,
             'sale_type'     => $request->sale_type,
@@ -52,31 +53,30 @@ class SalesController extends Controller
 
                 $totalToProduct = $product['price'] * $product['quantity'];
 
-                $newProduct = $sale->products()->saveMany([
+                $newProduct = $sale->productSales()->saveMany([
 
-                    new Product([
-                        'name'  => $product['name'],
+                    new ProductSale([
+                        'product_id'  => $product['product_id'],
                         'price' => $product['price'],
                         'quantity' => $product['quantity'],
                         'totalToProduct' => $totalToProduct,
-                        'concessionaire_id' => $product['concessionaire_id'],
                         'sale_id' => $sale->id,
                     ]),
                 ]);
             }
         }
 
-        $payment_total = $sale->products->sum('totalToProduct');
+         $payment_total = $sale->productSales->sum('totalToProduct');
 
-        if ($sale->payment_type == 'vef') {
-            $payment_vef = $payment_total * $sale->priceDollar;
-        }
+         if ($sale->payment_type == 'vef') {
+             $payment_vef = $payment_total * $sale->priceDollar;
+         }
 
-        $sale->update([
+         $sale->update([
             'code' => strtoupper('VENTA-0' . $sale->id),
             'payment_total' => $payment_total,
             'payment_vef'   => $payment_vef,
-        ]);
+         ]);
         
 
         return redirect()->route('sales.dashboard');
@@ -95,7 +95,7 @@ class SalesController extends Controller
 
     public function show($id){
 
-        $sale = Sale::find($id);
+        $sale = Sale::find($id)->load('productSales','productSales.product');
         return view('sales.show', compact('sale'));
     }
 }

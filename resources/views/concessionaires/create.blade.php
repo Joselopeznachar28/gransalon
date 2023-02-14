@@ -19,6 +19,7 @@
       </div>
       <div class="col-sm-2">
         <button type="submit" class="btn btn-success p-3">Guardar</button>
+        <a href="{{ redirect()->back()->getTargetUrl() }}" class="btn btn-secondary">Regresar</a>
       </div>
     </div>
   </form>

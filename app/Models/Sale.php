@@ -26,6 +26,10 @@ class Sale extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function productSales(){
+        return $this->hasMany(ProductSale::class);
+    }
+
     public function setPriceDollarAttribute($value)
     {
         $this->attributes['priceDollar'] = $value * 100;

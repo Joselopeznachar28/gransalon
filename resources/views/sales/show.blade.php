@@ -53,18 +53,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sale->products as $product)
+                    @foreach ($sale->productSales as $productSale)
                         <tr>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->quantity}}</td>
-                            <td>{{$product->price}}</td>
-                            <td>{{$product->totalToProduct}}</td>
+                            <td>{{$productSale->product->name}}</td>
+                            <td>{{$productSale->quantity}}</td>
+                            <td>{{$productSale->price}}</td>
+                            <td>{{$productSale->totalToProduct}}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div style="text-align: right">
-                <span>Total Venta USD: <b>{{ number_format($sale->products->sum('totalToProduct'),2,',','.') }}</b></span><br>
+                <span>Total Venta USD: <b>{{ number_format($sale->productSales->sum('totalToProduct'),2,',','.') }}</b></span><br>
                 <span>Venta en VEF: <b>{{ number_format($sale->payment_vef,2,',','.') }}</b></span>
             </div>
         </div>

@@ -21,7 +21,7 @@ class ProductsController extends Controller
             'concessionaire_id' => $request->concessionaire_id,
         ]);
 
-        return view('products.create');
+        return redirect()->route('products.create');
     }
 
 }

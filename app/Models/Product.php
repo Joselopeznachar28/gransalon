@@ -12,18 +12,15 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        'quantity',
-        'totalToProduct',
         'concessionaire_id',
-        'sale_id'
     ];
 
     public function concessionaire(){
         return $this->belongsTo(Concessionaire::class);
     }
 
-    public function sale(){
-        return $this->belongsTo(Sale::class);
+    public function productSale(){
+        return $this->hasOne(productSale::class);
     }
 
     public function setTotalToProductAttribute($value)

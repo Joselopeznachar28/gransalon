@@ -23,76 +23,38 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <select class="form-select" id="floatingProduct" name="products[0][name]">
-                          <option selected disabled>-- Seleccionar --</option>
-                          <option disabled class="bg-black text-bold text-white">Bebidas</option>
-                          <option value="Santa Teresa Linaje">Santa Teresa Linaje</option>
-                          <option value="Old Par 12">Old Par 12</option>
-                          <option value="Buchanan's 12">Buchanan's 12</option>
-                          <option value="Buchanan's 18">Buchanan's 18</option>
-                          <option value="Diplomatico R.E.">Diplomatico R.E.</option>
-                          <option value="Grey Goose">Grey Goose</option>
-                          <option value="Espumante">Espumante</option>
-                          <option value="Vino Blanco">Vino Blanco</option>
-                          <option value="Red Bull">Red Bull</option>
-                          <option value="Agua Gasificada">Agua Gasificada</option>
-                          <option value="Refresco de Lata">Refresco de Lata</option>
-                          <option value="Soda">Soda</option>
-                          <option value="AguaKina">AguaKina</option>
-                          <option value="Agua">Agua</option>
-                          <option disabled class="bg-black text-bold text-white">Alimentos</option>
-                          <option value="Sushi">Sushi</option>
-                          <option value="Tequeño">Tequeño</option>
-                          <option value="Carpaccio Lomito">Carpaccio Lomito</option>
-                          <option value="Ceviche">Ceviche</option>
-                          <option value="Coctel De Camarones">Coctel De Camarones</option>
-                          <option value="Pizza">Pizza</option>
-                        </select>
-                        <label for="floatingProduct">Alimentos y Bebidas</label>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingPrice" name="products[0][price]">
-                          <option selected disabled>-- Seleccionar --</option>
-                          <option disabled class="bg-black text-bold text-white">Bebidas</option>
-                          <option value = 60 >USD 60</option>
-                          <option value = 100 >USD 100</option>
-                          <option value = 50 >USD 50</option>
-                          <option value = 20 >USD 20</option>
-                          <option value = 7 >USD 7</option>
-                          <option value = 5 >USD 5</option>
-                          <option value = 3 >USD 3</option>
-                          <option value = 1 >USD 1</option>
-                          <option disabled class="bg-black text-bold text-white">Alimentos</option>
-                          <option value = 30 >30</option>
-                          <option value = 12 >12</option>
-                          <option value = 25 >25</option>
-                          <option value = 20 >20</option>
-                        </select>
-                        <label for="floatingPrice">Precios</label>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="quantity" placeholder="Cantidad del Producto" name="products[0][quantity]">
-                        <label for="quantity">Cantidad</label>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingProduct" name="products[0][concessionaire_id]">
-                            @foreach ($concessionaires as $concessionaire)
-                                <option value="{{ $concessionaire->id }}">{{ $concessionaire->name }}</option>
+                        <select class="form-select" id="floatingProduct0" name="products[0][product_id]" onchange="changeProducts(0)">
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
-                            <option selected disabled>-- Seleccionar --</option>
+                          <option selected disabled>-- Seleccionar --</option>
                         </select>
-                        <label for="floatingProduct">Aliado Comercial</label>
+                        <label for="floatingProduct0">Alimentos y Bebidas</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <input type="number" readonly class="form-control" id="floatingPrice0" onchange="changeTotal(0)" name="products[0][price]">
+                        <label for="floatingPrice0">Precios</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingQuantity0" onchange="changeTotal(0)" placeholder="Cantidad del Producto" name="products[0][quantity]">
+                        <label for="floatingQuantity0">Cantidad</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="floatingTotalProduct0" placeholder="Cantidad del Producto" readonly name="products[0][totalToProduct]">
+                        <label for="floatingTotalProduct0">Total</label>
                     </div>
                 </div>
             </div><br>
             
             <div class="row" id="otherProducts"></div><br><hr>
+            <span>Total USD =</span>
+            <span id="totalSale"></span>
 
             <div class="row">
                 <h2 class="text-center">Informacion del Pago</h2><hr>
@@ -161,6 +123,6 @@
 </body>
 <script src="/js/addProducts.js"></script>
 <script>
-    const concessionaires = @json($concessionaires);
+    const products = @json($products);
 </script>
 </html>

@@ -28,6 +28,8 @@
                   <div>
                     <ul class="list-unstyled">
                         <li><a href="{{ route('sales.create') }}" class="btn btn-outline-success mb-2">Venta</a></li>
+                        <li><a href="{{ route('products.create') }}" class="btn btn-outline-success mb-2">Products</a></li>
+                        <li><a href="{{ route('concessionaires.create') }}" class="btn btn-outline-success mb-2">Concessionarios</a></li>
                         <li><a href="{{ route('sales.pdf') }}" class="btn btn-outline-info mb-2">Reporte</a></li>
                     </ul>
                   </div>
